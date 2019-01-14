@@ -1,4 +1,5 @@
 export default {
+  MAX_ATTACHMEN_SIZE: 5000000,
   s3: {
     REGION: 'us-east-2',
     BUCKET: 'scratch-serverless'
