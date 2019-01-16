@@ -52,7 +52,19 @@ class Signup extends Component {
       });
       this.setState({ newUser });
     } catch (e) {
-      alert(e.message);
+      if (e.code === 'UsernameExistsException') {
+        const tryAgain = await Auth.resendSignUp(this.state.email);
+        alert(
+          `It seems you have already signed up. Resending confirmation code to ${
+            this.state.email
+          }`
+        );
+        this.setState({
+          newUser: tryAgain
+        });
+      } else {
+        alert(e.message);
+      }
     }
     this.setState({ isLoading: false });
   };
